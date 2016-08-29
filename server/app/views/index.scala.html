@@ -1,0 +1,39 @@
+@(title: String)(implicit environment: play.api.Environment)
+
+<html>
+  <head>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="@routes.Assets.at("js/jquery-3.1.0.min.js")" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="@routes.Assets.at("js/knockout.js")" type="text/javascript"></script>
+
+  </head>
+
+  <body>
+  <div id="testId"> </div>
+  <div class="container">
+    <div class="jumbotron">
+      <h1>@title</h1>
+    </div>
+
+    <div class="row" id="shopping-row">
+      <h1> Available Items</h1>
+      <table class="table">
+        <tbody data-bind="foreach: availableItems">
+          <td data-bind="text: name"></td>
+          <td data-bind="text: price"></td>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row" id="maxPriceContainer">
+      <h2>Max Price</h2>
+      <input type="number" id="max-price-input" min="0" max="100" step="0.50" value="100">
+      <button id="max-price-button">Filter Items</button>
+    </div>
+  </div>
+      <!-- Run the scalaJS code -->
+  @playscalajs.html.scripts("client")
+  </body>
+</html>
